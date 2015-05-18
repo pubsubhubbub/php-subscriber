@@ -5,21 +5,19 @@ It was written by Josh Fraser (joshfraser.com) and is released under the Apache 
 # Usage
 
 ```php
-// specify which hub you want to use. in this case we'll use the demo hub on app engine.
-$hub_url = "http://pubsubhubbub.appspot.com/";
+include("subscriber.php");
 
-// create a new pubsubhubbub publisher
-$p = new Publisher($hub_url);
+$hub_url = "http://pubsubhubbub.appspot.com";
+$callback_url = "put your own endpoint here";
 
-// specify the feed that has been updated
-$topic_url = "http://www.onlineaspect.com";
+$feed = "http://feeds.feedburner.com/onlineaspect";
 
-// notify the hub that the specified topic_url (ATOM feed) has been updated
-// alternatively, publish_update() also accepts an array of topic urls
-if ($p->publish_update($topic_url)) {
-    echo "$topic_url was successfully published to $hub_url";
-} else {
-    echo "Ooops...";
-    print_r($p->last_response());
-}
+// create a new subscriber
+$s = new Subscriber($hub_url, $callback_url);
+
+// subscribe to a feed
+$s->subscribe($feed);
+
+// unsubscribe from a feed
+$s->unsubscribe($feed);
 ```
