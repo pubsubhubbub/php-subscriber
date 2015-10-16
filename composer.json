@@ -1,0 +1,20 @@
+{
+    "name": "pubsubhubbub/subscriber",
+    "type": "library",
+    "description": "pubsubhubbub implementation of subscriber.",
+    "keywords": ["pubsubhubbub", "subscribers", "data", "feeds"],
+    "homepage": "https://github.com/pubsubhubbub/php-subscriber",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "pubsubhubbub subscriber Contributors",
+            "homepage": "https://github.com/pubsubhubbub/php-subscriber/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.0.0"
+    },
+    "autoload": {        
+        "classmap": ["subscriber.php"]
+    }
+}
