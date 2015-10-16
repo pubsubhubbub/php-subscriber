@@ -1,25 +1,48 @@
 <?php
-
-// a PHP client library for pubsubhubbub
-// as defined at http://code.google.com/p/pubsubhubbub/
-// written by Josh Fraser | joshfraser.com | josh@eventvue.com
-// Released under Apache License 2.0
+/**
+ * A PHP client library for pubsubhubbub
+ * 
+ * @link    http://code.google.com/p/pubsubhubbub/
+ * @author  Josh Fraser | joshfraser.com | josh@eventvue.com
+ * @license Apache License 2.0
+ */
 
 class Subscriber {
-    
-    // put your google key here
-    // required if you want to use the google feed API to lookup RSS feeds
+    /**
+     * put your google key here
+     * required if you want to use the google feed API to lookup RSS feeds
+     * 
+     * @var string
+     */
     protected $google_key = "";
     
+    /** @var string */
     protected $hub_url;
+    
+    /** @var string */
     protected $callback_url;
+    
+    /** @var string */
     protected $credentials;
-    // accepted values are "async" and "sync"
+    
+    /**
+     * @var string accepted values are "async" and "sync"
+     */
     protected $verify = "async"; 
+    
+    /** @var string */
     protected $verify_token;
+    
+    /** @var int */
     protected $lease_seconds;
     
-    // create a new Subscriber (credentials added for SuperFeedr support)
+    /**
+     * create a new Subscriber (credentials added for SuperFeedr support)
+     * 
+     * @param string $hub_url
+     * @param string $callback_url
+     * @param string $credentials
+     */
     public function __construct($hub_url, $callback_url, $credentials = false) {
         
         if (!isset($hub_url))
@@ -36,7 +59,13 @@ class Subscriber {
         $this->credentials = $credentials;
     }
     
-    // $use_regexp lets you choose whether to use google AJAX feed api (faster, but cached) or a regexp to read from site
+    /**
+     * $use_regexp lets you choose whether to use google AJAX feed api (faster, but cached) or a regexp to read from site
+     * 
+     * @param  string   $url
+     * @param  callable $http_function
+     * @return string
+     */
     public function find_feed($url, $http_function = false) {
         // using google feed API
         $url = "http://ajax.googleapis.com/ajax/services/feed/lookup?key={$this->google_key}&v=1.0&q=".urlencode($url);
@@ -51,15 +80,32 @@ class Subscriber {
         return $rss_url;
     }
     
+    /**
+     * @param  string $topic_url
+     * @param  callable $http_function
+     * @return mixed
+     */
     public function subscribe($topic_url, $http_function = false) {
         return $this->change_subscription("subscribe", $topic_url, $http_function = false);
     }
     
+    /**
+     * @param  string $topic_url
+     * @param  callable $http_function
+     * @return mixed
+     */
     public function unsubscribe($topic_url, $http_function = false) {
         return $this->change_subscription("unsubscribe", $topic_url, $http_function = false);
     }
 
-    // helper function since sub/unsub are handled the same way
+    /**
+     * helper function since sub/unsub are handled the same way
+     * 
+     * @param  string   $mode
+     * @param  string   $topic_url
+     * @param  callable $http_function
+     * @return mixed
+     */
     private function change_subscription($mode, $topic_url, $http_function = false) {
         if (!isset($topic_url))
             throw new Exception('Please specify a topic url');
@@ -86,7 +132,13 @@ class Subscriber {
             return $this->http($this->hub_url,$post_string);
     }
     
-    // default http function that uses curl to post to the hub endpoint
+    /**
+     * default http function that uses curl to post to the hub endpoint
+     * 
+     * @param  string $url
+     * @param  string $post_string
+     * @return mixed
+     */
     private function http($url, $post_string) {
         
         // add any additional curl options here
@@ -115,6 +167,3 @@ class Subscriber {
         return false;	
     }
 }
-
-
-?>
