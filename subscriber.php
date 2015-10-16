@@ -7,6 +7,8 @@
  * @license Apache License 2.0
  */
 
+namespace pubsubhubbub;
+
 class Subscriber {
     /**
      * put your google key here
