@@ -1,19 +1,24 @@
 This PHP library implements a subscriber for PubSubHubbub.
 
-It was written by Josh Fraser (joshfraser.com) and is released under the Apache 2.0 License
+It was written by [Josh Fraser](joshfraser.com) and is released under the Apache 2.0 License
+
+# Install
+Update your `composer` require block:
+```json
+"require": { "phpsubhubub/subscriber": "*" }
+```
 
 # Usage
-
 ```php
-include("subscriber.php");
+use phpsubhubbub\subscriber\Subscriber;
 
-$hub_url = "http://pubsubhubbub.appspot.com";
+$hub_url      = "http://pubsubhubbub.appspot.com";
 $callback_url = "put your own endpoint here";
-
-$feed = "http://feeds.feedburner.com/onlineaspect";
 
 // create a new subscriber
 $s = new Subscriber($hub_url, $callback_url);
+
+$feed = "http://feeds.feedburner.com/onlineaspect";
 
 // subscribe to a feed
 $s->subscribe($feed);
