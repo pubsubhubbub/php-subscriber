@@ -7,7 +7,7 @@
  * @license Apache License 2.0
  */
 
-namespace pubsubhubbub;
+namespace pubsubhubbub/subscriber;
 
 class Subscriber {
     /**
