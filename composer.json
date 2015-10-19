@@ -14,7 +14,7 @@
     "require": {
         "php": ">=5.0.0"
     },
-    "autoload": {        
-        "classmap": ["subscriber.php"]
+    "autoload": {
+        "psr-4": { "pubsubhubbub/subscriber": "src/" }
     }
 }
