@@ -10,7 +10,7 @@ Update your `composer` require block:
 
 # Usage
 ```php
-use pubsubhubbub\subscriber\Subscriber;
+use \Pubsubhubbub\Subscriber\Subscriber;
 
 $hub_url      = "http://pubsubhubbub.appspot.com";
 $callback_url = "put your own endpoint here";
