@@ -5,7 +5,7 @@ It was written by [Josh Fraser](http://joshfraser.com) and is released under the
 # Install
 Update your `composer` require block:
 ```json
-"require": { "pubsubhubub/subscriber": "*" }
+"require": { "pubsubhubbub/subscriber": "*" }
 ```
 
 # Usage
