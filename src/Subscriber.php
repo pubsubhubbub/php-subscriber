@@ -88,7 +88,7 @@ class Subscriber {
      * @return mixed
      */
     public function subscribe($topic_url, $http_function = false) {
-        return $this->change_subscription("subscribe", $topic_url, $http_function = false);
+        return $this->change_subscription("subscribe", $topic_url, $http_function);
     }
 
     /**
@@ -97,7 +97,7 @@ class Subscriber {
      * @return mixed
      */
     public function unsubscribe($topic_url, $http_function = false) {
-        return $this->change_subscription("unsubscribe", $topic_url, $http_function = false);
+        return $this->change_subscription("unsubscribe", $topic_url, $http_function);
     }
 
     /**
@@ -129,7 +129,7 @@ class Subscriber {
         // make the http post request and return true/false
         // easy to over-write to use your own http function
         if ($http_function)
-            return $http_function($this->hub_url,$post_string);
+            return call_user_func_array($http_function,array($this->hub_url,$post_string));
         else
             return $this->http($this->hub_url,$post_string);
     }
